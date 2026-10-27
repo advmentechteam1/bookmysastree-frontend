@@ -131,7 +131,7 @@ const DivineKathaJaap = ({ onOpenBooking }) => {
     <div className="divine-katha-page">
       {/* Top Header & Sub-badge */}
       <div className="dkj-header-wrap">
-        <div className="dkj-subtag">BOOK MY SASTREE</div>
+        <div className="dkj-subtag">BOOK MY SHASTRI</div>
         <h1 className="dkj-title">Divine Katha &amp; Jaap</h1>
         <p className="dkj-subtitle">
           Authentic Vedic rituals and sacred narrations by master priests, bringing peace and prosperity to your spiritual journey.

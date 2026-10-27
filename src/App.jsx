@@ -13,7 +13,7 @@ import { KundliModal, SignInModal, PartnerModal, BookingModal } from './componen
 import './App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('pind-daan');
+  const [currentPage, setCurrentPage] = useState('home');
   const [previousPage, setPreviousPage] = useState('home');
   const [kundliOpen, setKundliOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
@@ -41,32 +41,103 @@ function App() {
 
   // Scroll Animations: Elements glide in from top, bottom, left, and right on scroll
   useEffect(() => {
-    const handleAnimate = () => {
-      const targets = document.querySelectorAll(
-        '[data-animate], .experience-card, .puja-card, .trending-card, .pandit-card, .why-card, .step-card, .testimonial-card, .dhp-card, .dtp-card, .dkj-card, .dpp-card, .tg-card'
+    const selector = `
+      [data-animate],
+      .section-header,
+      .section-header-split,
+      .hero-left,
+      .hero-right,
+      .hero-cta-group,
+      .stat-card,
+      .exp-card,
+      .group-puja-card,
+      .trending-card,
+      .trust-left,
+      .trust-point-card,
+      .why-card,
+      .pandit-card,
+      .step-card,
+      .testimonial-card,
+      .dhp-card,
+      .dtp-card,
+      .dkj-card,
+      .dpp-card,
+      .tg-card,
+      .dpp-header-wrap,
+      .dpp-search-section,
+      .tg-hero-card,
+      .tg-hero-right,
+      .tg-controls-wrap,
+      .footer-col
+    `;
+
+    const targets = document.querySelectorAll(selector);
+    const animDirections = ['fade-left', 'fade-up', 'fade-right', 'fade-down'];
+
+    targets.forEach((el, index) => {
+      if (!el.getAttribute('data-animate')) {
+        if (el.classList.contains('section-header') || el.classList.contains('section-header-split') || el.classList.contains('dpp-header-wrap')) {
+          el.setAttribute('data-animate', 'fade-down'); // Top se aaye
+        } else if (el.classList.contains('hero-left') || el.classList.contains('trust-left')) {
+          el.setAttribute('data-animate', 'fade-left'); // Left se aaye
+        } else if (el.classList.contains('hero-right') || el.classList.contains('tg-hero-right')) {
+          el.setAttribute('data-animate', 'fade-right'); // Right se aaye
+        } else if (el.classList.contains('hero-cta-group') || el.classList.contains('dpp-search-section') || el.classList.contains('tg-controls-wrap')) {
+          el.setAttribute('data-animate', 'fade-up'); // Bottom se aaye
+        } else {
+          // Cards alternate between left, bottom, right, top
+          el.setAttribute('data-animate', animDirections[index % animDirections.length]);
+        }
+      }
+
+      // Add subtle stagger delay for harmonious entrance
+      if (!el.style.transitionDelay) {
+        el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+      }
+    });
+
+    let observer;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-animated');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px',
+        }
       );
 
-      targets.forEach((el, index) => {
-        if (!el.getAttribute('data-animate')) {
-          const animTypes = ['fade-up', 'fade-left', 'fade-right', 'fade-down'];
-          el.setAttribute('data-animate', animTypes[index % animTypes.length]);
-        }
+      targets.forEach((el) => observer.observe(el));
+    }
+
+    // Scroll fallback to ensure any element in view triggers immediately
+    const checkViewport = () => {
+      targets.forEach((el) => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight + 80) {
+        if (rect.top < window.innerHeight + 60 && rect.bottom > 0) {
           el.classList.add('is-animated');
         }
       });
     };
 
-    // Run on initial page load / navigation
-    setTimeout(handleAnimate, 50);
-    setTimeout(handleAnimate, 250);
+    setTimeout(checkViewport, 60);
+    setTimeout(checkViewport, 250);
 
-    window.addEventListener('scroll', handleAnimate, { passive: true });
-    window.addEventListener('resize', handleAnimate, { passive: true });
+    window.addEventListener('scroll', checkViewport, { passive: true });
+    window.addEventListener('resize', checkViewport, { passive: true });
+
     return () => {
-      window.removeEventListener('scroll', handleAnimate);
-      window.removeEventListener('resize', handleAnimate);
+      if (observer) {
+        targets.forEach((el) => observer.unobserve(el));
+      }
+      window.removeEventListener('scroll', checkViewport);
+      window.removeEventListener('resize', checkViewport);
     };
   }, [currentPage]);
 

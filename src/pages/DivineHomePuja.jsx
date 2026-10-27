@@ -195,7 +195,7 @@ const DivineHomePuja = ({ onOpenBooking }) => {
     <div className="divine-home-page">
       {/* Top Breadcrumb & Tag */}
       <div className="dhp-header-wrap">
-        <div className="dhp-subtag">BOOK MY SASTREE</div>
+        <div className="dhp-subtag">BOOK MY SHASTRI</div>
         <h1 className="dhp-title">Divine Home Puja</h1>
         <p className="dhp-subtitle">
           Bring the sanctity of the temple to your doorstep with authentic Vedic ceremonies performed by master priests

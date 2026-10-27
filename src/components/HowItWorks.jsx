@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const HowItWorks = ({ onOpenBooking }) => {
   const [copied, setCopied] = useState(false);
-  const referralCode = 'SASTREE10';
+  const referralCode = 'SHASTRI10';
 
   const handleCopy = () => {
     navigator.clipboard.writeText(referralCode);
@@ -13,8 +13,8 @@ const HowItWorks = ({ onOpenBooking }) => {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'BookMySastree - Sacred Vedic Puja',
-        text: `Use my code ${referralCode} to get 10% off your first Vedic ceremony on BookMySastree!`,
+        title: 'BookMyShastri - Sacred Vedic Puja',
+        text: `Use my code ${referralCode} to get 10% off your first Vedic ceremony on BookMyShastri!`,
         url: window.location.href,
       }).catch(() => {});
     } else {
@@ -27,7 +27,7 @@ const HowItWorks = ({ onOpenBooking }) => {
       <div className="section-container">
         {/* Header */}
         <div className="section-header text-center">
-          <h2 className="section-title">How Book My Sastree Works</h2>
+          <h2 className="section-title">How Book My Shastri Works</h2>
           <p className="section-subtitle">Simple, authentic, and completely guided process in three easy steps.</p>
         </div>
 

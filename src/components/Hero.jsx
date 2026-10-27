@@ -15,7 +15,7 @@ const Hero = ({ onOpenKundli, onOpenBooking }) => {
 
           {/* Main Headline */}
           <h1 className="hero-headline">
-            Book My Sastree,<br />
+            Book My Shastri,<br />
             <span className="headline-highlight">Modern Convenience</span>
           </h1>
 

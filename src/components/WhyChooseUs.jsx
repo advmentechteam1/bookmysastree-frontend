@@ -83,7 +83,7 @@ const WhyChooseUs = () => {
         {/* Section Header */}
         <div className="section-header text-center">
           <div className="sub-badge">OUR PROMISE TO YOU</div>
-          <h2 className="section-title">Why Families should Choose Book My Sastree.</h2>
+          <h2 className="section-title">Why Families should Choose Book My Shastri.</h2>
           <p className="section-subtitle">
             We combine ancient traditions with modern reliability — so you can focus on your devotion while we handle everything else.
           </p>

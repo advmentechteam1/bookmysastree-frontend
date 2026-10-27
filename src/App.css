@@ -1941,30 +1941,30 @@ img {
    ========================================================================== */
 [data-animate] {
   opacity: 0;
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 [data-animate="fade-up"] {
-  transform: translateY(45px);
+  transform: translateY(60px);
 }
 
 [data-animate="fade-down"] {
-  transform: translateY(-45px);
+  transform: translateY(-60px);
 }
 
 [data-animate="fade-left"] {
-  transform: translateX(-50px);
+  transform: translateX(-70px);
 }
 
 [data-animate="fade-right"] {
-  transform: translateX(50px);
+  transform: translateX(70px);
 }
 
 [data-animate].is-animated {
   opacity: 1 !important;
-  transform: translate(0, 0) scale(1) !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
 }
 
 .footer-contact-link {
